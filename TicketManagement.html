@@ -470,14 +470,54 @@
 			
 			// MAIN CUSTOMER INFORMATION PANEL
 			$.post("server.php",
-				   {"userID" : 12345})
+				   {"userID" : 12345,
+					"module" : "customerInformation"
+				   })
 			 .done(function(data, textStatus, jqXHR)
 			 {
-				
+				$("#customerID").text(data["customerID"]);
+				$("#personalCardNumber").text(data["personalCardNumber"]);
+				$("#lastOrderDate").text(data["lastOrderDate"]);
+				$("#registrationDate").text(data["registrationDate"]);
+				$("#customerName").text(data["customerName"]);
+				$("#phonetic").text(data["phonetic"]);
+				$("#telephoneNumber1").text(data["telephoneNumber1"]);
+				$("#postalCode").text(data["postalCode"]);
+				$("#streetAddress").text(data["streetAddress"]);
+				$("#municipality").text(data["municipality"]);
+				$("#municipalityPostalCode").text(data["municipalityPostalCode"]);
+				$("#municipalityAddress").text(data["municipalityAddress"]);
+				$("#municipalityPhoneNumber").text(data["municipalityPhoneNumber"]);
+				$("#localGovernmentPersonel").text(data["localGovernmentPersonel"]);
+
 			 });
+			
+			 $("#editCustomerInformation").click(function()
+			 {
+				 //alert( $("#customerID").text() );
+				 window.location.href = "http://localhost:81/LANEX/TicketManagement.html?customerID=" + $("#customerID").text();
+			 }
+			 );
 			// MAIN CUSTOMER INFORMATION PANEL
 			
 			
+			// TICKETS USED INFORMATION
+			$.post("server.php",
+				   {"userID" : 12345,
+					"module" : "ticketsUsedInformation"
+				   }
+				  )
+			.done(function(data, textStatus, jqXHR)
+			{
+				alert(data.successFlag);
+			}
+		   	)
+			.fail(function(data, textStatus, jqXHR)
+			{
+				alert("failed");
+			}
+			);
+			// TICKETS USED INFORMATION
 		});
     </script>
 
