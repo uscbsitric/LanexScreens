@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://getbootstrap.com/examples/dashboard/ -->
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+        <title>Dashboard Template for Bootstrap</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="./TicketManagement_files/bootstrap.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <link href="./TicketManagement_files/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="./TicketManagement_files/dashboard.css" rel="stylesheet">
+
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="./TicketManagement_files/ie-emulation-modes-warning.js"></script>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://getbootstrap.com/examples/dashboard/#">給付券情報</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right navbarFontColor">
+            <li>ログインユーザ：</li>
+            <li style="display: block;">XXXXXXXXXXXXXXXXXXX</li> <br>
+            <li> <button type="button" class="btn btn-default mainNavButton">Top</button> </li>
+            <li> <button type="button" class="btn btn-default mainNavButton">Logout</button> </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <hr class="hrOveride"></hr>
+        <div class="panel panel-default panel-primary mainCustomerInformation">
+          <div class="panel-heading">
+            <h3 class="panel-title">Main Customer Information</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-condensed table-responsive mainCustomerInformationTable">
+                <tr>
+                    <td>CustomerID</td>
+                    <td id="customerID">123456</td>
+                    <td>Personal Card Number</td>
+                    <td id="personalCardNumber">0123456</td>
+                    <td>Last Order Date</td>
+                    <td id="lastOrderDate">2015/11/01</td>
+                    <td>Registration Date</td>
+                    <td class="text-right" id="registrationDate">2015/11/01</td>
+                </tr>
+                <tr>
+                    <td>Customer Name</td>
+                    <td id="customerName">XXXXXXXXXXXX</td>
+                    <td>Phonetic</td>
+                    <td id="phonetic">XXXXXXXXXXXXXX</td>
+                    <td>Telephone Number1</td>
+                    <td id="telephoneNumber1">999-999-9999</td>
+                </tr>
+                <tr>
+                    <td>Postal Code</td>
+                    <td id="postalCode">999-9999</td>
+                    <td>Street Address</td>
+                    <td colspan="5" id="streetAddress">京都府京都市上京区智恵光院通り芦山寺上る西入る西社町</td>
+                </tr>
+                <tr>
+                    <td>Municipality</td>
+                    <td id="municipality">01:青葉区</td>
+                </tr>
+                <tr>
+                    <td>Municipality postal code</td>
+                    <td id="municipalityPostalCode">999-9999</td>
+                    <td>Municipality address</td>
+                    <td id="municipalityAddress">Sendai, Miyagi Prefecture, Aoba-ku</td>
+                </tr>
+                <tr>
+                    <td>Municipality Phone Number</td>
+                    <td id="municipalityPhoneNumber">999-999-9999</td>
+                    <td>Local Government Personnel</td>
+                    <td colspan="4" id="localGovernmentPersonel">XXXXXXXXXXXX</td>
+                    <td>
+                        <button type="button"
+								class="btn btn-primary btn-xs goToNextScreenButton"
+								id="editCustomerInformation">Edit Customer Information
+						</button>
+                    </td>
+                </tr>
+            </table>
+          </div>
+        </div> <!-- END OF mainCustomerInformation -->
+      </div> <!-- END OF .row MAIN CUSTOMER INFORMATION PANEL -->
+
+      <div class="row">
+          <div class="panel panel-default panel-primary benifitTicketInformationList">
+              <div class="panel-heading">
+                  <div class="panel-title">Benifit Ticket Information List</div>
+              </div>
+              <div class="panel-body">
+                  <table class="table table-bordered table-condensed table-responsive table-hover benifitTicketInformationListTable">
+                      <tr>
+                          <th>名称</th>
+                          <th>基準額</th>
+                          <th>給付額</th>
+                          <th>公費負担額</th>
+                          <th>自己負担額</th>
+                          <th>公費負担残高</th>
+                          <th>自己負担残高</th>
+                          <th>送付日</th>
+                          <th>返却日</th>
+                          <th>請求日</th>
+                          <th>入金日</th>
+                      </tr>
+                      <tr>
+                          <td>8-9月分</td>
+                          <td>8600</td>
+                          <td>17200</td>
+                          <td>15480</td>
+                          <td>1720</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>2015/08/05</td>
+                          <td>2015/08/21</td>
+                          <td>2015/10/11</td>
+                          <td>2015/10/11</td>
+                      </tr>
+                      <tr>
+                          <td>10-11月分</td>
+                          <td>8600</td>
+                          <td>17200</td>
+                          <td>15480</td>
+                          <td>1720</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>2015/10/09</td>
+                          <td>2015/10/20</td>
+                          <td>2015/12/11</td>
+                          <td>2015/12/11</td>
+                      </tr>
+                      <tr>
+                          <td>12-1月分</td>
+                          <td>8600</td>
+                          <td>17200</td>
+                          <td>15480</td>
+                          <td>1720</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>2015/01/07</td>
+                          <td>2015/01/15</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td>2-3月分</td>
+                          <td>8600</td>
+                          <td>17200</td>
+                          <td>15480</td>
+                          <td>1720</td>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>2015/01/05</td>
+                          <td>2015/02/15</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                  </table>
+              </div>
+          </div> <!-- END OF benifitTicketInformationList -->
+          <div class="row benifitTicketInformationListButtons">
+              <button type="button" class="btn btn-success btn-xs pull-right">Add Ticket</button>
+              <button type="button" class="btn btn-danger btn-xs pull-right">Update Ticket</button>
+          </div> <!-- END OF benifitTicketInformationListButtons -->
+      </div> <!-- END OF .row BENIFIT TICKET INFORMATION LIST TABLE -->
+
+      <div class="row">
+          <div class="panel panel-default panel-primary benifitTicketInformation">
+              <div class="panel-heading">
+                    <div class="panel-title">Benifit Ticket Information</div>
+              </div>
+              <div class="panel-body">
+                   <form class="form-inline">
+				   		<div class="row">
+							<div class="form-group col-md-2">
+                        		<label for="ticketNumber">Ticket Number</label>
+                        		<input type="text" class="form-control" id="ticketNumber" name="ticketNumber" placeholder="99999999999">
+                      		</div>
+                      		<div class="form-group col-md-2">
+                        		<label for="ticketName">Ticket Name</label>
+								<input type="text" class="form-control" id="ticketName" name="ticketName" placeholder="4-5月券" disabled>
+							</div>
+							<div class="form-group col-md-2">
+								<label for="ticketStartMonth">Ticket Start Month</label>
+								<select class="form-control" name="ticketStartMonth" id="ticketStartMonth">
+								  <option value="1">1月</option>
+								  <option value="2">2月</option>
+								  <option value="3">3月</option>
+								  <option value="4">4月</option>
+								  <option value="5">5月</option>
+								  <option value="6">6月</option>
+								  <option value="7">7月</option>
+								  <option value="8">8月</option>
+								  <option value="9">9月</option>
+								  <option value="10">10月</option>
+								  <option value="11">11月</option>
+								  <option value="12">12月</option>
+								</select>
+							</div>
+							<div class="form-group col-md-2">
+								<label for="ticketStartMonth">Ticket End Month</label>
+								<select class="form-control" name="ticketEndMonth" id="ticketEndMonth">
+								  <option value="1">1月</option>
+								  <option value="2">2月</option>
+								  <option value="3">3月</option>
+								  <option value="4">4月</option>
+								  <option value="5">5月</option>
+								  <option value="6">6月</option>
+								  <option value="7">7月</option>
+								  <option value="8">8月</option>
+								  <option value="9">9月</option>
+								  <option value="10">10月</option>
+								  <option value="11">11月</option>
+								  <option value="12">12月</option>
+								</select>
+							</div>
+						 	<div class="form-group col-md-4">
+							  <label for="ticketState">Ticket State</label>
+							  <select class="form-control" name="ticketState" id="ticketState">
+								  <option value="0">申請中</option>
+								  <option value="1">使用中</option>
+								  <option value="2">差し替え</option>
+								  <option value="9">使用済み ※請求したタイミングで使用済みとする</option>
+							  </select>
+						  	</div>
+					    </div> <!-- END OF first row of form elements -->
+
+					    <div class="row">
+						  <div class="form-group col-md-2">
+							  <label for="benifitCategory">Benifit Category</label>
+							  <input type="checkbox" name="benifitCategory" id="colostomy" value="0">コロストミー
+						  </div>
+						  <div class="form-group col-md-10">
+							  <input type="checkbox" name="benifitCategory" id="urostomy" value="1">ウロストミー
+						  </div>
+					    </div> <!-- END OF second row of form elements -->
+
+					   	<div class="row">
+							  <div class="form-group col-md-3">
+								  <label for="ticketMakeDate">Ticket Make Date</label>
+								  <input type="date" class="form-control" name="ticketMakeDate" id="ticketMakeDate">
+							  </div>
+							  <div class="form-group col-md-4">
+								  <label for="ticketSendDateToCustomer">Ticket Send Date To Customer</label>
+								  <input type="date" class="form-control" name="ticketSendDateToCustomer" id="ticketSendDateToCustomer">
+							  </div>
+							  <div class="form-group col-md-5">
+								  <label for="ticketReturnDateFromCustomer">Ticket Return Date From Customer</label>
+								  <input type="date" class="form-control" name="ticketReturnDateFromCustomer" id="ticketReturnDateFromCustomer">
+							  </div>
+					    </div> <!-- END OF third row of form elements -->
+					   
+					    <div class="row">
+							  <div class="form-group col-md-3">
+								  <label for="ticketBaseAmount">Ticket Base Amount</label>
+								  <input type="number" class="form-control" name="ticketBaseAmount" id="ticketBaseAmount">
+							  </div>
+							  <div class="form-group col-md-3">
+								  <label for="benifitAmount">Benifit Amount</label>
+								  <input type="number" class="form-control" name="benifitAmount" id="benifitAmount">
+							  </div>
+							  <div class="form-group col-md-3">
+								  <label for="amountFromGov">Amount From Government</label>
+								  <input type="number" class="form-control" name="amountFromGov" id="amountFromGov">
+							  </div>
+							  <div class="form-group col-md-3">
+								  <label for="cutomerAmount">Customer Amount</label>
+								  <input type="number" class="form-control" name="cutomerAmount" id="cutomerAmount">
+							  </div>
+					    </div> <!-- END OF fourth row of form elements -->
+					   
+					    <div class="row">
+							  <div class="form-group col-md-12">
+								   <label for="originalBenifitAmountReplacement">Original Benifit Amount Replacement</label>
+								   <input type="text" class="form-control" name="originalBenifitAmountReplacement" 
+										  id="originalBenifitAmountReplacement" placeholder="99999999" disabled>
+							  </div>
+					    </div>
+                   </form>
+              </div>
+          </div> <!-- END OF .benifitTicketInformation -->
+      </div> <!-- END OF .row BENIFIT TICKET INFORMATION -->
+
+      <div class="row">
+		  <div class="panel panel-default panel-primary ticketBillingInformation">
+			  <div class="panel-heading">
+				  <div class="panel-title">Ticket Billing Information</div>
+			  </div>
+			  <div class="panel-body">
+					  <form class="form-inline">
+						  <div class="row">
+							  <div class="form-group col-md-4">
+								  <label for="ticketBillingTimeLimitDate">Ticket Billing Time Limit Date</label>
+								  <input type="date" class="form-control" name="ticketBillingTimeLimitDate" id="ticketBillingTimeLimitDate">
+							  </div>
+							  <div class="form-group col-md-4">
+								  <label for="ticketBillingDate">Ticket Billing Date</label>
+								  <input type="date" class="form-control" name="ticketBillingDate" id="ticketBillingDate">
+							  </div>
+							  <div class="form-group col-md-4">
+								  <label for="ticketBillingAmount">Ticket Billing Amount</label>
+								  <input type="number" class="form-control" name="ticketBillingAmount" id="ticketBillingAmount">
+							  </div>
+						  </div> <!-- END OF first row of form elements -->
+					  </form>
+			  </div>
+		  </div> <!-- END OF .ticketBillingInformation -->
+	  </div> <!-- END OF .row TICKET BILLING INFORMATION -->
+	  
+	  <div class="row">
+		  <div class="panel panel-default panel-primary paymentInformation">
+			  <div class="panel-heading">
+				  <div class="panel-title">Payment Information</div>
+			  </div>
+			  <div class="panel-body">
+				  <form class="form-inline">
+					  <div class="row">
+						  <div class="form-group col-md-3">
+							  <label for="depositDate">Deposit Date</label>
+						  	  <input type="date" class="form-control" name="depositDate" id="depositDate">
+						  </div>
+						  <div class="form-group col-md-9">
+							  <label for="depositAmount">Deposit Amount</label>
+							  <input type="number" class="form-control" name="depositAmount" id="depositAmount">
+						  </div>
+					  </div>
+				  </form>
+			  </div>
+		  </div> <!-- END OF .paymentInformation -->
+		  <div class="row paymentInformationButtons">
+			  <button type="button" class="btn btn-success btn-xs pull-right">Submit</button>
+		  </div> <!-- END OF benifitTicketInformationListButtons -->
+	  </div> <!-- END OF .row PAYMENT INFORMATION -->
+	  
+	  <div class="row">
+		  <div class="panel panel-default panel-primary ticketsUsedInformationList">
+			  <div class="panel-heading">
+				  <div class="panel-title">Tickets Used Information</div>
+			  </div>
+			  <div class="panel-body">
+				  <table class="table table-bordered table-condensed table-responsive table-hover ticketsUsedInformationListTable">
+					  <tr>
+						  <th>No</th>
+						  <th>受注番号</th>
+						  <th>受注日</th>
+						  <th>支払い方法</th>
+						  <th>清算方法</th>
+						  <th>納品日</th>
+						  <th>公費負担額</th>
+						  <th>発送済み</th>
+					  </tr>
+					  <tr>
+						  <td>1</td>
+						  <td>12345678</td>
+						  <td>9999/99/99</td>
+						  <td>郵便振替</td>
+						  <td>後日清算</td>
+						  <td>2015/12/05</td>
+						  <td>123456</td>
+						  <td>未確認</td>
+					  </tr>
+					  <tr>
+						  <td>1</td>
+						  <td>12345678</td>
+						  <td>9999/99/99</td>
+						  <td>郵便振替</td>
+						  <td>後日清算</td>
+						  <td>2015/12/05</td>
+						  <td>123456</td>
+						  <td>未確認</td>
+					  </tr>
+					  <tr>
+						  <td>1</td>
+						  <td>12345678</td>
+						  <td>9999/99/99</td>
+						  <td>郵便振替</td>
+						  <td>後日清算</td>
+						  <td>2015/12/05</td>
+						  <td>123456</td>
+						  <td>未確認</td>
+					  </tr>
+				  </table>
+			  </div>
+		  </div> <!-- END OF ticketsUsedInformation -->
+		  <div class="row ticketsUsedInformationButtons">
+			  <button type="button" class="btn btn-warning 
+					  btn-xs pull-right" id="goToExcelExportScreen" name="goToExcelExportScreen">Go to Excel Export Screen</button>
+		  </div> <!-- END OF ticketsUsedInformationButtons -->
+		  <hr class="hrOveride"></hr>
+	  </div> <!-- END OF.row TICKETS USED INFORMATION -->
+	  
+    </div> <!-- END OF .container-fluid -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./TicketManagement_files/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./TicketManagement_files/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="./TicketManagement_files/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./TicketManagement_files/ie10-viewport-bug-workaround.js"></script>
+  
+	<!-- Custom Javascripts by SANDALO, Frederick -->
+	<script type="text/javascript">
+		$( window ).load(function()
+		{
+			//jQuery.post( url [, data ] [, success ] [, dataType ] )
+			
+			// MAIN CUSTOMER INFORMATION PANEL
+			$.post("server.php",
+				   {"userID" : 12345})
+			 .done(function(data, textStatus, jqXHR)
+			 {
+				
+			 });
+			// MAIN CUSTOMER INFORMATION PANEL
+			
+			
+		});
+    </script>
+
+</body>
+</html>
