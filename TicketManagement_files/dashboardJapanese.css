@@ -1,0 +1,349 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/************************************************************************************************************
+ * Top navigation
+ * Hide default border to remove 1px line.
+ ***********************************************************************************************************/
+.navbar-fixed-top {
+  border: 0;
+}
+
+.navbarFontColor li
+{
+    color: #ffffff;
+    margin-right: 20px;
+}
+
+.navbarPosition
+{
+    position: relative;
+}
+
+.projectName
+{
+    margin-left: 20px!important;
+}
+
+.mainNav
+{
+    list-style: none;
+     color: #fff;
+}
+
+.mainNav li
+{
+    display: inline-block;
+}
+
+.mainNavButton
+{
+    width: 100px;
+    height: auto;
+}
+
+@media (min-width: 320px) and (max-width: 767px)
+{
+    .mainNavButton
+    {
+        width: 100vw;
+        height: auto;
+    }
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+/*******************************************************************************************************************************
+***************   REUSABLES
+*******************************************************************************************************************************/
+.hrOveride
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    display: block;
+    border-color: red;
+}
+
+.goToNextScreenButton
+{
+    width: 100%!important;
+    height: auto;
+}
+
+/*Removes Spinners*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button
+{ 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+
+.mainCustomerInformation, 
+.benifitTicketInformationList, 
+.benifitTicketInformation,
+.ticketBillingInformation,
+.paymentInformation,
+.ticketsUsedInformation,
+.ticketsUsedInformationList
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*Word Wraps the text in buttons*/
+button
+{
+	white-space: normal!important;
+}
+
+
+/*Tables and their buttons*/
+.mainCustomerInformationTable,
+.benifitTicketInformationListTable,
+.ticketsUsedInformationListTable
+{
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.benifitTicketInformationListTable td,
+.ticketsUsedInformationListTable td
+{
+    height: 31px;
+}
+
+
+.benifitTicketInformationListTable th,
+.ticketsUsedInformationListTable th
+{
+    text-align: center;
+}
+
+
+.benifitTicketInformationList tr td,
+.ticketsUsedInformationListTable tr td
+{
+  background-color: white;
+  color: black;
+  transition: background-color 1s, color 1s;
+}
+
+
+
+
+
+
+
+
+.benifitTicketInformationList tr:hover td,
+.ticketsUsedInformationList tr:hover td
+{
+  background-color: #449d44;
+  color: white;
+}
+
+.benifitTicketInformationListButtons,
+.ticketsUsedInformationButtons
+{
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.benifitTicketInformationListButtons button,
+.ticketsUsedInformationButtons button
+{
+    margin-left: 10px;
+    width: 120px;
+}
+
+
+/*******************************************************************************************************************************
+***************   MAIN CUSTOMER INFORMATION
+*******************************************************************************************************************************/
+.mainCustomerInformation .panel-body
+{
+    margin-bottom: 0!important;
+    padding-bottom: 0!important;
+}
+
+
+.mainCustomerInformationTable td
+{
+    border: none !important;
+}
+
+.mainCustomerInformationTable tr
+{
+    border: none !important;
+}
+
+
+
+/*******************************************************************************************************************************
+***************   BENIFIT TICKET INFORMATION LIST
+*******************************************************************************************************************************/
+.benifitTicketInformationList
+{
+}
+
+.form-inline .row
+{
+	margin-bottom: 10px;
+}
+
+
+.benifitTicketInformation form
+{
+	font-size: 12px;
+}
+
+.benifitTicketInformation select, 
+.benifitTicketInformation input
+{
+	max-width: 100px!important;
+}
+
+#ticketBaseAmount, 
+#benifitAmount,
+#amountFromGov,
+#cutomerAmount
+{
+	max-width: 144px!important;
+}
+
+.benifitTicketInformation input[type='date']
+{
+	max-width: 250px!important;
+}
+
+
+
+/*******************************************************************************************************************************
+***************   TICKET BILLING INFORMATION
+*******************************************************************************************************************************/
+.ticketBillingInformation
+{
+	
+}
+
+
+
+/*******************************************************************************************************************************
+***************   PAYMENT INFORMATION
+*******************************************************************************************************************************/
+.paymentInformation
+{
+	
+}
+
+.paymentInformationButtons
+{
+    margin-right: 10px;
+    margin-bottom: 30px;	
+}
+
+.paymentInformationButtons button
+{
+	margin-left: 10px;
+    width: 120px;
+}
+
+
+
+/*******************************************************************************************************************************
+***************   TICKETS USED INFORMATION
+*******************************************************************************************************************************/
