@@ -3,10 +3,10 @@
 
 	if(isset($_POST['userID']) && $_POST['module'] == 'customerInformation' )
 	{
-		echo json_encode(array("customerID" => "123456",
-							   "personalCardNumber" => "0123456",
-							   "lastOrderDate" => "2015/11/01",
-							   "registrationDate" => "2015/11/01",
+		echo json_encode(array("customerID" => "value1",
+							   "personalCardNumber" => "value2",
+							   "lastOrderDate" => "value3",
+							   "registrationDate" => "value4",
 							   "customerName" => "XXXXXXXXXXXX",
 							   "phonetic" => "XXXXXXXXXXXXXX",
 							   "telephoneNumber1" => "999-999-9999",
@@ -26,5 +26,4 @@
 	{
 		echo json_encode(array("successFlag" => "success value from the tickets used information"));
 	}
-	
 ?>
