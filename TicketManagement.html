@@ -118,7 +118,7 @@
       </div> <!-- END OF .row MAIN CUSTOMER INFORMATION PANEL -->
 
       <div class="row">
-          <div class="panel panel-default panel-primary benifitTicketInformationList">
+          <div class="panel panel-default panel-primary benifitTicketInformationList" id="benifitTicketInformationList">
               <div class="panel-heading">
                   <div class="panel-title">Benifit Ticket Information List</div>
               </div>
@@ -147,20 +147,21 @@
       </div> <!-- END OF .row BENIFIT TICKET INFORMATION LIST TABLE -->
 
       <div class="row">
-          <div class="panel panel-default panel-primary benifitTicketInformation">
+          <div class="panel panel-default panel-primary benifitTicketInformation" id="benifitTicketInformation">
               <div class="panel-heading">
                     <div class="panel-title">Benifit Ticket Information</div>
               </div>
               <div class="panel-body">
-                   <form class="form-inline">
+                   <form class="form-inline" id="benifitTicketInformationForm">
+					    <input type="hidden" value="add" id="addOrUpdateToggle">
 				   		<div class="row">
 							<div class="form-group col-md-2">
                         		<label for="ticketNumber">Ticket Number</label>
-                        		<input type="text" class="form-control" id="ticketNumber" name="ticketNumber" placeholder="99999999999">
+                        		<input type="text" class="form-control" id="ticketNumber" name="ticketNumber">
                       		</div>
                       		<div class="form-group col-md-2">
                         		<label for="ticketName">Ticket Name</label>
-								<input type="text" class="form-control" id="ticketName" name="ticketName" placeholder="4-5月券" disabled>
+								<input type="text" class="form-control" id="ticketName" name="ticketName" disabled> <!-- placeholder="4-5月券" --> 
 							</div>
 							<div class="form-group col-md-2">
 								<label for="ticketStartMonth">Ticket Start Month</label>
@@ -210,10 +211,10 @@
 					    <div class="row">
 						  <div class="form-group col-md-2">
 							  <label for="benifitCategory">Benifit Category</label>
-							  <input type="checkbox" name="benifitCategory" id="colostomy" value="0">コロストミー
+							  <input type="radio" name="benifitCategory" id="colostomy" value="0" checked="checked">コロストミー
 						  </div>
 						  <div class="form-group col-md-10">
-							  <input type="checkbox" name="benifitCategory" id="urostomy" value="1">ウロストミー
+							  <input type="radio" name="benifitCategory" id="urostomy" value="1">ウロストミー
 						  </div>
 					    </div> <!-- END OF second row of form elements -->
 
@@ -246,8 +247,8 @@
 								  <input type="number" class="form-control" name="amountFromGov" id="amountFromGov">
 							  </div>
 							  <div class="form-group col-md-3">
-								  <label for="cutomerAmount">Customer Amount</label>
-								  <input type="number" class="form-control" name="cutomerAmount" id="cutomerAmount">
+								  <label for="customerAmount">Customer Amount</label>
+								  <input type="number" class="form-control" name="customerAmount" id="customerAmount">
 							  </div>
 					    </div> <!-- END OF fourth row of form elements -->
 					   
@@ -310,7 +311,7 @@
 			  </div>
 		  </div> <!-- END OF .paymentInformation -->
 		  <div class="row paymentInformationButtons">
-			  <button type="button" class="btn btn-success btn-xs pull-right">Submit</button>
+			  <button type="button" class="btn btn-success btn-xs pull-right" id="submitBenifitTicketInformation" disabled>Submit</button>
 		  </div> <!-- END OF benifitTicketInformationListButtons -->
 	  </div> <!-- END OF .row PAYMENT INFORMATION -->
 	  
@@ -347,6 +348,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="./TicketManagement_files/jquery.min.js"></script>
+	<script type="text/javascript" src="TicketManagement_files/jquery-ui-1.11.4/jquery-ui.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="./TicketManagement_files/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
@@ -404,22 +406,80 @@
 			{
 				for(counter = 0; counter < data.length; counter++)
 				{
-					$(".benifitTicketInformationListTable").append("<tr><td id="+data[counter]['ticketID']+">"+data[counter]['ticketName']+"</td> <td>"+data[counter]['baseAmount']+"</td> <td>"+data[counter]['benifitAmount']+"</td> <td>"+data[counter]['amountFromGovernment']+"</td> <td>"+data[counter]['customerAmount']+"</td> <td>"+data[counter]['differenceAmount']+"</td> <td>"+data[counter]['customerTotalAmount']+"</td> <td>"+data[counter]['benifitTicketSendDate']+"</td> <td>"+data[counter]['benifitTicketReturnDateFromCustomer']+"</td> <td>"+data[counter]['billingDate']+"</td> <td>"+data[counter]['billingDate']+"</td> </tr>");
+					$(".benifitTicketInformationListTable").append("<tr id="+data[counter]['ticketID']+"><td>"+data[counter]['ticketName']+"</td> <td>"+data[counter]['baseAmount']+"</td> <td>"+data[counter]['benifitAmount']+"</td> <td>"+data[counter]['amountFromGovernment']+"</td> <td>"+data[counter]['customerAmount']+"</td> <td>"+data[counter]['differenceAmount']+"</td> <td>"+data[counter]['customerTotalAmount']+"</td> <td>"+data[counter]['benifitTicketSendDate']+"</td> <td>"+data[counter]['benifitTicketReturnDateFromCustomer']+"</td> <td>"+data[counter]['billingDate']+"</td> <td>"+data[counter]['billingDate']+"</td> </tr>");
 				}
 			})
 			.fail(function(data, textStatus, jqXHR)
 			{
 				alert("Request to BENIFIT TICKET INFORMATION LIST failed");
 			});
-			
+
 			$("#updateTicket").click(function()
 			{
-				alert("Clicked the Update Ticket button");
+				$('html, body').animate({scrollTop: $("#benifitTicketInformation").offset().top - 60}, 1000);
 			});
-			
+
 			$("#addTicket").click(function()
 			{
-				window.location.href = "http://localhost:81/LANEX/TicketManagement.html?customerID=" + $("#customerID").text() + "&module=addTicket";
+				$('html, body').animate({scrollTop: $("#benifitTicketInformation").offset().top - 60}, 1000);
+				$("#benifitTicketInformationForm")[0].reset();
+				$("#submitBenifitTicketInformation").prop('disabled', false)
+			});
+			
+			$("#submitBenifitTicketInformation").click(function()
+			{
+				if("add" == $("#addOrUpdateToggle").val())
+				{
+					$.post("server.php",
+						   {"module": "benifitTicketInformation",
+							"userID":12345,
+							"ticketNumber":$("#ticketNumber").val(),
+							"ticketName":$("#ticketName").val(),
+							"ticketStartMonth":$("#ticketStartMonth").val(),
+							"ticketEndMonth":$("#ticketEndMonth").val(),
+							"ticketState":$("#ticketState").val(),
+							"benifitCategory":$("#benifitCategory").val(),
+							"ticketMakeDate":$("#ticketMakeDate").val(),
+							"ticketSendDateToCustomer":$("#ticketSendDateToCustomer").val(),
+							"ticketReturnDateFromCustomer":$("#ticketReturnDateFromCustomer").val(),
+							"ticketBaseAmount":$("#ticketBaseAmount").val(),
+							"benifitAmount":$("#benifitAmount").val(),
+							"amountFromGov":$("#amountFromGov").val(),
+							"customerAmount":$("#customerAmount").val(),
+							"originalBenifitAmountReplacement":$("#originalBenifitAmountReplacement").val(),
+							"ticketBillingTimeLimitDate":$("#ticketBillingTimeLimitDate").val(),
+							"ticketBillingDate":$("#ticketBillingDate").val(),
+							"ticketBillingAmount":$("#ticketBillingAmount").val(),
+							"depositDate":$("#depositDate").val(),
+							"depositAmount":$("#depositAmount").val(),
+							"differenceAmount": 0,   //INVESTIGATE WITH KAINOMA SAN HOW TO GET THIS VALUE
+							"customerTotalAmount": 0 //INVESTIGATE WITH KAINOMA SAN HOW TO GET THIS VALUE
+						   })
+					.done(function(data, textStatus, jqXHR)
+					{
+						var testVariable = "test Variable";
+						$("#submitBenifitTicketInformation").prop('disabled', true)
+						
+						$(".benifitTicketInformationListTable").append("<tr id="+data['ticketNumber']+"><td>"+data['ticketStartMonth']+"-"+data['ticketEndMonth']+"月分</td> <td>"+data['ticketBaseAmount']+"</td> <td>"+data['benifitAmount']+"</td> <td>"+data['amountFromGov']+"</td> <td>"+data['customerAmount']+"</td> <td>"+data['differenceAmount']+"</td> <td>"+data['customerTotalAmount']+"</td> <td>"+data['ticketSendDateToCustomer']+"</td> <td>"+data['ticketReturnDateFromCustomer']+"</td> <td>"+data['ticketBillingDate']+"</td> <td>"+data['depositDate']+"</td> </tr>");
+
+						$('html, body').animate({scrollTop: $("#benifitTicketInformationList").offset().top - 60}, 1000);
+							
+						// NAA TA DINHE
+						setTimeout(function()
+						{
+							$(".benifitTicketInformationListTable").effect("highlight", {color: "red"}, 5000);
+							$("#"+data['ticketNumber']).effect("highlight", {color:"red"}, 5000);
+						}, 3000);
+					})
+					.fail(function(data, textStatus, jqXHR)
+					{
+						var testVariable = "test Variable";
+					});
+				}
+				else
+				{
+					
+				}
 			});
 			// BENIFIT TICKET INFORMATION LIST
 			/////////////////////////////////////////////////////////////

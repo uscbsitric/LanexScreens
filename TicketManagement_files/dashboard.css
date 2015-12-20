@@ -296,6 +296,11 @@ button
 	max-width: 100px!important;
 }
 
+#ticketState
+{
+	max-width: 291px!important;
+}
+
 #ticketBaseAmount, 
 #benifitAmount,
 #amountFromGov,

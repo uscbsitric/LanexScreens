@@ -22,7 +22,6 @@
 							  )
 						);
 	}
-
 	
 	if(isset($_POST['userID']) && $_POST['module'] == 'ticketsUsedInformation')
 	{
@@ -55,7 +54,6 @@
 							  )
 						);
 	}
-
 
 	if(isset($_POST['userID']) && $_POST['module'] == 'benifitTicketsList')
 	{
@@ -113,4 +111,10 @@
 									)
 						));
 	}
+
+	if(isset($_POST['userID']) && $_POST['module'] == 'benifitTicketInformation')
+	{
+		echo json_encode($_POST);
+	}
+
 ?>
