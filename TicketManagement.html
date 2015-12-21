@@ -417,6 +417,7 @@
 			$("#updateTicket").click(function()
 			{
 				$('html, body').animate({scrollTop: $("#benifitTicketInformation").offset().top - 60}, 1000);
+				
 			});
 
 			$("#addTicket").click(function()
@@ -459,17 +460,13 @@
 					{
 						var testVariable = "test Variable";
 						$("#submitBenifitTicketInformation").prop('disabled', true)
-						
-						$(".benifitTicketInformationListTable").append("<tr id="+data['ticketNumber']+"><td>"+data['ticketStartMonth']+"-"+data['ticketEndMonth']+"月分</td> <td>"+data['ticketBaseAmount']+"</td> <td>"+data['benifitAmount']+"</td> <td>"+data['amountFromGov']+"</td> <td>"+data['customerAmount']+"</td> <td>"+data['differenceAmount']+"</td> <td>"+data['customerTotalAmount']+"</td> <td>"+data['ticketSendDateToCustomer']+"</td> <td>"+data['ticketReturnDateFromCustomer']+"</td> <td>"+data['ticketBillingDate']+"</td> <td>"+data['depositDate']+"</td> </tr>");
+
+						var newTicket = $("<tr style='background-color: red;' id="+data['ticketNumber']+"><td>"+data['ticketStartMonth']+"-"+data['ticketEndMonth']+"月分</td> <td>"+data['ticketBaseAmount']+"</td> <td>"+data['benifitAmount']+"</td> <td>"+data['amountFromGov']+"</td> <td>"+data['customerAmount']+"</td> <td>"+data['differenceAmount']+"</td> <td>"+data['customerTotalAmount']+"</td> <td>"+data['ticketSendDateToCustomer']+"</td> <td>"+data['ticketReturnDateFromCustomer']+"</td> <td>"+data['ticketBillingDate']+"</td> <td>"+data['depositDate']+"</td> </tr>");
+
+						$(".benifitTicketInformationListTable tr:first-child").after(newTicket);
 
 						$('html, body').animate({scrollTop: $("#benifitTicketInformationList").offset().top - 60}, 1000);
-							
-						// NAA TA DINHE
-						setTimeout(function()
-						{
-							$(".benifitTicketInformationListTable").effect("highlight", {color: "red"}, 5000);
-							$("#"+data['ticketNumber']).effect("highlight", {color:"red"}, 5000);
-						}, 3000);
+						$(".benifitTicketInformationListTable").effect("highlight", {color: "#449d44"}, 7000);
 					})
 					.fail(function(data, textStatus, jqXHR)
 					{

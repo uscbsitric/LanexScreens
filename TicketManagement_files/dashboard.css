@@ -221,13 +221,6 @@ button
   transition: background-color 1s, color 1s;
 }
 
-
-
-
-
-
-
-
 .benifitTicketInformationList tr:hover td,
 .ticketsUsedInformationList tr:hover td
 {
@@ -249,7 +242,17 @@ button
     width: 120px;
 }
 
+.greenBackground
+{
+	background-color: green;
+	color: white;
+}
 
+.noBackground
+{
+	background-color: white;
+	color: black;
+}
 /*******************************************************************************************************************************
 ***************   MAIN CUSTOMER INFORMATION
 *******************************************************************************************************************************/
