@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			#test {padding: 1em;
+				   background: #ffa;
+				   border: 1px solid #999;
+				  }
+			.table1 {padding: 1em;
+				   background: #ffa;
+				   border: 1px solid #999;
+				  }
+		</style>
+		<script src="./TicketManagement_files/jquery.min.js"></script>
+	</head>
+	<body>
+		<p><button id="insert">Insert</button></p>
+		
+		<table id="table1">
+			
+		</table>
+		
+	</body>
+	
+		<script type="text/javascript">
+			$( window ).load(function()
+			{
+				$(document).bind('DOMNodeInserted', function(e) 
+				{
+					var element = e.target;
+					setTimeout(function() 
+					{
+						$(element).fadeOut(1000, function() {
+							$(this).remove();
+						});
+					}, 2000);
+				});
+
+				$('#insert').click(function()
+				{
+					$('<div id="test"/>')
+					.text('Test')
+					.appendTo('body');
+					
+					
+					$("<tr class='table1'><td>test data</td></tr>").appendTo("#table1");
+				});
+			});
+		</script>
+</html>

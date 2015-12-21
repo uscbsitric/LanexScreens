@@ -117,4 +117,31 @@
 		echo json_encode($_POST);
 	}
 
+
+	if( isset($_POST['ticketID']) && $_POST['module'] == "specificTicketInformation")
+	{
+		echo json_encode(array("ticketID" => $_POST['ticketID'],
+							   "ticketStartMonth" => "1",
+							   "ticketEndMonth" => "3",
+							   "ticketState" => "9",
+							   "benifitCategory" => "1",
+							   "baseAmount" => "9999",
+							   "benifitAmount" => "99999",
+							   "amountFromGovernment" => "99999",
+							   "customerAmount" => "9999",
+							   "OriginalBenifitAmountReplacement" => "99999",
+							   "differenceAmount" => "9",
+							   "customerTotalAmount" => "9",
+							   "benifitTicketMakeDate" => "2015-12-25",
+							   "benifitTicketSendDate" => "2015-12-25",
+							   "benifitTicketReturnDateFromCustomer" => "2015-12-25",
+							   "ticketBillingTimeLimitDate" => "2015-12-25",
+							   "billingDate" => "2015-12-25",
+							   "ticketBillingAmount" => "99999",
+							   "depositDate" => "2015-12-25",
+							   "depositAmount" => "99999"
+							  )
+						);
+	}
+
 ?>

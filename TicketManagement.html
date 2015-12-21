@@ -12,6 +12,9 @@
         <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
         <title>Dashboard Template for Bootstrap</title>
+		
+		<style>
+		</style>
 
         <!-- Bootstrap core CSS -->
         <link href="./TicketManagement_files/bootstrap.min.css" rel="stylesheet">
@@ -359,9 +362,7 @@
 	<!-- Custom Javascripts by SANDALO, Frederick -->
 	<script type="text/javascript">
 		$( window ).load(function()
-		{
-			//jQuery.post( url [, data ] [, success ] [, dataType ] )
-			
+		{			
 			/////////////////////////////////////////////////////////////
 			// MAIN CUSTOMER INFORMATION PANEL
 			$.post("server.php",
@@ -397,6 +398,67 @@
 			
 			/////////////////////////////////////////////////////////////
 			// BENIFIT TICKET INFORMATION LIST
+			$('.benifitTicketInformationListTable').bind('DOMNodeInserted', function(e) 
+			{
+				var element = e.target;
+				setTimeout(function() 
+				{
+					$(element).click(function()
+					{
+						var rowID = $(element).attr("id");
+						$.post("server.php",
+							   {"ticketID": rowID,
+							    "module" : "specificTicketInformation"
+							   })
+						.done(function(data, textStatus, jqXHR)
+						{
+							$("#ticketNumber").val(data['ticketID']);
+							$("#ticketName").val( data['ticketStartMonth'] +"-"+ data['ticketEndMonth'] + "月分" );
+
+							$("#ticketStartMonth option:selected").val(data['ticketStartMonth']);
+							
+							$("#ticketEndMonth").val(data['ticketEndMonth']);
+
+							$('#ticketState option:selected').attr("selected",null);
+							$('#ticketState option[value='+data['ticketState']+']').attr("selected","selected");
+
+							$('input[name=benifitCategory]').prop("checked", false);
+							
+							if(data['benifitCategory'] == "0")
+							{
+								$("#colostomy").prop("checked", true);
+							}
+							else
+							{
+								$("#urostomy").prop("checked", true);
+							}
+
+							$("#ticketMakeDate").val(data['benifitTicketMakeDate']);
+							$("#ticketSendDateToCustomer").val(data['benifitTicketSendDate']);
+							$("#ticketReturnDateFromCustomer").val(data['benifitTicketReturnDateFromCustomer']);
+							$("#ticketBaseAmount").val(data['baseAmount']);
+							$("#benifitAmount").val(data['benifitAmount']);
+							$("#amountFromGov").val(data['amountFromGovernment']);
+							$("#customerAmount").val(data['customerAmount']);
+							$("#originalBenifitAmountReplacement").val(data['OriginalBenifitAmountReplacement']);
+							$("#ticketBillingTimeLimitDate").val(data['ticketBillingTimeLimitDate']);
+							$("#ticketBillingDate").val(data['billingDate']);
+							$("#ticketBillingAmount").val(data['ticketBillingAmount']);
+							$("#depositDate").val(data['depositDate']);
+							$("#depositAmount").val(data['depositAmount']);
+
+							$("#addOrUpdateToggle").val("update");
+							$("#submitBenifitTicketInformation").prop('disabled', false)
+						})
+						.fail(function(data, textStatus, jqXHR)
+						{
+							alert('Getting Ticket ID Failed');
+						});
+					}
+					);
+				}, 1000);
+			});
+			
 			$.post("server.php",
 				   {"userID": 12345,
 					"module": "benifitTicketsList"
@@ -406,7 +468,7 @@
 			{
 				for(counter = 0; counter < data.length; counter++)
 				{
-					$(".benifitTicketInformationListTable").append("<tr id="+data[counter]['ticketID']+"><td>"+data[counter]['ticketName']+"</td> <td>"+data[counter]['baseAmount']+"</td> <td>"+data[counter]['benifitAmount']+"</td> <td>"+data[counter]['amountFromGovernment']+"</td> <td>"+data[counter]['customerAmount']+"</td> <td>"+data[counter]['differenceAmount']+"</td> <td>"+data[counter]['customerTotalAmount']+"</td> <td>"+data[counter]['benifitTicketSendDate']+"</td> <td>"+data[counter]['benifitTicketReturnDateFromCustomer']+"</td> <td>"+data[counter]['billingDate']+"</td> <td>"+data[counter]['billingDate']+"</td> </tr>");
+					$(".benifitTicketInformationListTable").append("<tr class='benifitTicketInformationListItem' id="+data[counter]['ticketID']+"><td>"+data[counter]['ticketName']+"</td> <td>"+data[counter]['baseAmount']+"</td> <td>"+data[counter]['benifitAmount']+"</td> <td>"+data[counter]['amountFromGovernment']+"</td> <td>"+data[counter]['customerAmount']+"</td> <td>"+data[counter]['differenceAmount']+"</td> <td>"+data[counter]['customerTotalAmount']+"</td> <td>"+data[counter]['benifitTicketSendDate']+"</td> <td>"+data[counter]['benifitTicketReturnDateFromCustomer']+"</td> <td>"+data[counter]['billingDate']+"</td> <td>"+data[counter]['billingDate']+"</td> </tr>");
 				}
 			})
 			.fail(function(data, textStatus, jqXHR)
@@ -429,11 +491,14 @@
 			
 			$("#submitBenifitTicketInformation").click(function()
 			{
+				var debugVar = "debug value";
+
 				if("add" == $("#addOrUpdateToggle").val())
 				{
 					$.post("server.php",
 						   {"module": "benifitTicketInformation",
 							"userID":12345,
+							"operation":"add",
 							"ticketNumber":$("#ticketNumber").val(),
 							"ticketName":$("#ticketName").val(),
 							"ticketStartMonth":$("#ticketStartMonth").val(),
@@ -458,24 +523,74 @@
 						   })
 					.done(function(data, textStatus, jqXHR)
 					{
-						var testVariable = "test Variable";
 						$("#submitBenifitTicketInformation").prop('disabled', true)
 
-						var newTicket = $("<tr style='background-color: red;' id="+data['ticketNumber']+"><td>"+data['ticketStartMonth']+"-"+data['ticketEndMonth']+"月分</td> <td>"+data['ticketBaseAmount']+"</td> <td>"+data['benifitAmount']+"</td> <td>"+data['amountFromGov']+"</td> <td>"+data['customerAmount']+"</td> <td>"+data['differenceAmount']+"</td> <td>"+data['customerTotalAmount']+"</td> <td>"+data['ticketSendDateToCustomer']+"</td> <td>"+data['ticketReturnDateFromCustomer']+"</td> <td>"+data['ticketBillingDate']+"</td> <td>"+data['depositDate']+"</td> </tr>");
-
+						var newTicket = $("<tr id="+data['ticketNumber']+"><td>"+data['ticketStartMonth']+"-"+data['ticketEndMonth']+"月分</td> <td>"+data['ticketBaseAmount']+"</td> <td>"+data['benifitAmount']+"</td> <td>"+data['amountFromGov']+"</td> <td>"+data['customerAmount']+"</td> <td>"+data['differenceAmount']+"</td> <td>"+data['customerTotalAmount']+"</td> <td>"+data['ticketSendDateToCustomer']+"</td> <td>"+data['ticketReturnDateFromCustomer']+"</td> <td>"+data['ticketBillingDate']+"</td> <td>"+data['depositDate']+"</td> </tr>");
 						$(".benifitTicketInformationListTable tr:first-child").after(newTicket);
-
+						$("#benifitTicketInformationForm")[0].reset();
+						$("#submitBenifitTicketInformation").prop('disabled', true);
 						$('html, body').animate({scrollTop: $("#benifitTicketInformationList").offset().top - 60}, 1000);
 						$(".benifitTicketInformationListTable").effect("highlight", {color: "#449d44"}, 7000);
 					})
 					.fail(function(data, textStatus, jqXHR)
 					{
-						var testVariable = "test Variable";
+
 					});
 				}
 				else
 				{
-					
+					$.post("server.php",
+						   {"module":"benifitTicketInformation",
+							"userID":12345,
+							"operation":"update",
+							"ticketNumber":$("#ticketNumber").val(),
+							"ticketName":$("#ticketName").val(),
+							"ticketStartMonth":$("#ticketStartMonth").val(),
+							"ticketEndMonth":$("#ticketEndMonth").val(),
+							"ticketState":$("#ticketState").val(),
+							"benifitCategory":$("#benifitCategory").val(),
+							"ticketMakeDate":$("#ticketMakeDate").val(),
+							"ticketSendDateToCustomer":$("#ticketSendDateToCustomer").val(),
+							"ticketReturnDateFromCustomer":$("#ticketReturnDateFromCustomer").val(),
+							"ticketBaseAmount":$("#ticketBaseAmount").val(),
+							"benifitAmount":$("#benifitAmount").val(),
+							"amountFromGov":$("#amountFromGov").val(),
+							"customerAmount":$("#customerAmount").val(),
+							"originalBenifitAmountReplacement":$("#originalBenifitAmountReplacement").val(),
+							"ticketBillingTimeLimitDate":$("#ticketBillingTimeLimitDate").val(),
+							"ticketBillingDate":$("#ticketBillingDate").val(),
+							"ticketBillingAmount":$("#ticketBillingAmount").val(),
+							"depositDate":$("#depositDate").val(),
+							"depositAmount":$("#depositAmount").val(),
+							"differenceAmount": 0,   //INVESTIGATE WITH KAINOMA SAN HOW TO GET THIS VALUE
+							"customerTotalAmount": 0 //INVESTIGATE WITH KAINOMA SAN HOW TO GET THIS VALUE
+						   })
+					 .done(function(data, textStatus, jqXHR)
+					 {
+						// get the row
+						$("#" + data['ticketNumber']).children('td').eq(0).text( data['ticketStartMonth'] +'-'+ data['ticketEndMonth'] + '月分' );
+						$("#" + data['ticketNumber']).children('td').eq(1).text( data['baseAmount'] );
+						$("#" + data['ticketNumber']).children('td').eq(2).text( data['benifitAmount'] );
+						$("#" + data['ticketNumber']).children('td').eq(3).text( data['amountFromGovernment'] );
+						$("#" + data['ticketNumber']).children('td').eq(4).text( data['customerAmount'] );
+						$("#" + data['ticketNumber']).children('td').eq(5).text( data['differenceAmount'] );
+						$("#" + data['ticketNumber']).children('td').eq(6).text( data['customerTotalAmount'] );
+						$("#" + data['ticketNumber']).children('td').eq(7).text( data['benifitTicketSendDate'] );
+						$("#" + data['ticketNumber']).children('td').eq(8).text( data['benifitTicketReturnDateFromCustomer'] );
+						$("#" + data['ticketNumber']).children('td').eq(9).text( data['ticketBillingDate'] );
+						$("#" + data['ticketNumber']).children('td').eq(10).text( data['depositDate'] );
+						
+						// update the row items
+						
+						$("#benifitTicketInformationForm")[0].reset();
+						$("#submitBenifitTicketInformation").prop('disabled', true);
+						$('html, body').animate({scrollTop: $("#benifitTicketInformationList").offset().top - 60}, 1000);
+						$("#addOrUpdateToggle").val("add");
+					 })
+					 .fail(function(data, textStatus, jqXHR)
+					 {
+						var debugVar = "debug value";
+					 });
 				}
 			});
 			// BENIFIT TICKET INFORMATION LIST
